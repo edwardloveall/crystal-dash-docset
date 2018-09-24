@@ -1,0 +1,12 @@
+name: crystal-docset-generator
+version: 0.1.0
+
+authors:
+  - Edward Loveall <edward@edwardloveall.com>
+
+crystal: 0.26.1
+
+# dependencies:
+#   name:
+#     github: org/repo
+#     version: ~> 0.1.0
