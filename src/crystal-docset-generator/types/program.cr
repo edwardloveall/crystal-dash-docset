@@ -1,2 +1,1 @@
-class Cdg::Types::Program < Cdg::Types::Base
-end
+alias Cdg::Types::Program = Cdg::Types::Base
