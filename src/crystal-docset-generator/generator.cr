@@ -12,9 +12,23 @@ class Cdg::Generator
   end
 
   def generate!
-    json = json_index
-    index = Cdg::Types::Index.from_json(json)
-    puts index.program.types
+    generate_db!
+  end
+
+  def generate_db!
+    db_path = "#{Cdg.settings.resource_path}/docSet.dsidx"
+    File.delete(db_path) if File.exists?(db_path)
+    DB.open("sqlite3://#{db_path}") do |db|
+      db.exec <<-SQL
+        CREATE TABLE searchIndex(
+          id INTEGER PRIMARY KEY,
+          name TEXT,
+          type TEXT,
+          path TEXT
+        );
+        CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);
+      SQL
+    end
   end
 
   def json_index
