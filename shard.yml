@@ -6,7 +6,7 @@ authors:
 
 crystal: 0.26.1
 
-# dependencies:
-#   name:
-#     github: org/repo
-#     version: ~> 0.1.0
+dependencies:
+  habitat:
+    github: luckyframework/habitat
+    version: ~> 0.4.0
