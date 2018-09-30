@@ -11,4 +11,4 @@ server
 /shard.lock
 
 .DS_Store
-index.json
+download
