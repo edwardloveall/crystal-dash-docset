@@ -9,6 +9,8 @@ class Cdg::Types::Base
   def process
     add_to_database
     puts "processed #{name}"
+    puts "processed #{path}"
+    process_subtypes
   end
 
   def add_to_database
@@ -31,5 +33,9 @@ class Cdg::Types::Base
       "module" => "Module",
       "struct" => "Struct",
     }
+  end
+
+  def process_subtypes
+    types.each(&.process)
   end
 end
