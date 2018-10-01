@@ -4,5 +4,7 @@ module Cdg
     setting docset_path : String
     setting resource_path : String
     setting docs_path : String
+    setting db_path : String
+    setting db_url : String
   end
 end
