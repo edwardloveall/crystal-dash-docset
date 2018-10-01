@@ -1,5 +1,5 @@
 class Cdg::Generator
-  @top_level : Cdg::Types::Base
+  @top_level : Cdg::Page
   @db : DB::Database?
 
   # .program.types[49].path file path to download
@@ -7,7 +7,7 @@ class Cdg::Generator
   # .program.types[49].types[] namespaced classes
 
   def initialize(@version : String)
-    @top_level = Cdg::Types::Base.from_json(json_index, root: "program")
+    @top_level = Cdg::Page.from_json(json_index, root: "program")
   end
 
   def generate!

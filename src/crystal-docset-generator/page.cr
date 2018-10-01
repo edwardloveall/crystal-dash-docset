@@ -1,15 +1,15 @@
-class Cdg::Types::Base
+class Cdg::Page
   JSON.mapping(
     path: String,
     kind: String,
     name: String,
-    types: Array(Base)
+    types: Array(Page)
   )
 
   def process
     add_to_database
-    puts "processed #{name}"
-    puts "processed #{path}"
+    process_methods
+    puts "Processed #{path}"
     process_subtypes
   end
 
