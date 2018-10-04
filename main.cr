@@ -6,4 +6,8 @@ if ARGV.empty?
   exit(1)
 end
 
-Cdg::Generator.new(version: ARGV[0]).generate!
+begin
+  Cdg::Generator.new(version: ARGV[0]).generate!
+ensure
+  Cdg.settings.db.close
+end

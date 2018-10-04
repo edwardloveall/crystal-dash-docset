@@ -14,14 +14,12 @@ class Cdg::Page
   end
 
   def add_to_database
-    DB.open(Cdg.settings.db_url) do |db|
-      sql = <<-SQL
-        INSERT OR IGNORE INTO
-          searchIndex(name, type, path)
-          VALUES (?, ?, ?);
-      SQL
-      db.exec(sql, name, type_mapping[kind], path)
-    end
+    sql = <<-SQL
+      INSERT OR IGNORE INTO
+        searchIndex(name, type, path)
+        VALUES (?, ?, ?);
+    SQL
+    Cdg.settings.db.exec(sql, name, type_mapping[kind], path)
   end
 
   private def type_mapping

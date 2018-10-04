@@ -6,5 +6,6 @@ module Cdg
     setting docs_path : String
     setting db_path : String
     setting db_url : String
+    setting db : DB::Database
   end
 end

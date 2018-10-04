@@ -1,6 +1,5 @@
 class Cdg::Generator
   @top_level : Cdg::Page
-  @db : DB::Database?
 
   # .program.types[49].path file path to download
   # .program.types[49].name name
@@ -8,6 +7,11 @@ class Cdg::Generator
 
   def initialize(@version : String)
     @top_level = Cdg::Page.from_json(json_index, root: "program")
+    db_path = Cdg.settings.db_path
+    File.delete(db_path) if File.exists?(db_path)
+    Cdg.configure do |settings|
+      settings.db = DB.open(Cdg.settings.db_url)
+    end
   end
 
   def generate!
@@ -16,8 +20,6 @@ class Cdg::Generator
   end
 
   def generate_db
-    db_path = Cdg.settings.db_path
-    File.delete(db_path) if File.exists?(db_path)
     DB.open(Cdg.settings.db_url) do |db|
       db.exec <<-SQL
         CREATE TABLE searchIndex(
