@@ -1,4 +1,4 @@
-abstract class Cdg::AbstractMethod
+class Cdg::Method
   JSON.mapping(
     id: String,
     name: String,
@@ -6,8 +6,14 @@ abstract class Cdg::AbstractMethod
 
   property nillable_page : Page?
 
-  abstract def type : String
-  abstract def path : String
+  def type : String
+    "Method"
+  end
+
+  def path
+    escaped_id = URI.escape(id)
+    "#{page.path}##{escaped_id}"
+  end
 
   def process
     sql = <<-SQL

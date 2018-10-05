@@ -4,7 +4,7 @@ class Cdg::Page
     kind: String,
     name: String,
     types: Array(Page),
-    class_methods: Array(ClassMethod),
+    class_methods: Array(Method),
   )
 
   def process
