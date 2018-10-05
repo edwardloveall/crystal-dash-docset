@@ -3,7 +3,8 @@ class Cdg::Page
     path: String,
     kind: String,
     name: String,
-    types: Array(Page)
+    types: Array(Page),
+    class_methods: Array(ClassMethod),
   )
 
   def process
@@ -31,6 +32,13 @@ class Cdg::Page
       "module" => "Module",
       "struct" => "Struct",
     }
+  end
+
+  def process_methods
+    class_methods.each do |method|
+      method.nillable_page = self
+      method.process
+    end
   end
 
   def process_subtypes
