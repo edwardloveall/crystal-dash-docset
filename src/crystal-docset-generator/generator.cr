@@ -1,11 +1,7 @@
 class Cdg::Generator
   @top_level : Cdg::Page
 
-  # .program.types[49].path file path to download
-  # .program.types[49].name name
-  # .program.types[49].types[] namespaced classes
-
-  def initialize(@version : String)
+  def initialize(version : String)
     @top_level = Cdg::Page.from_json(json_index, root: "program")
     db_path = Cdg.settings.db_path
     File.delete(db_path) if File.exists?(db_path)
@@ -34,7 +30,8 @@ class Cdg::Generator
   end
 
   def json_index
-    HTTP::Client.get("#{Cdg.settings.online_path}/#{@version}/index.json").body
+    url = "#{Cdg.settings.online_path}/0.26.1/index.json"
+    HTTP::Client.get(url).body
   end
 
   def process_types

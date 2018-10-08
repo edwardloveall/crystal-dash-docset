@@ -2,6 +2,7 @@ require "http"
 require "json"
 require "habitat"
 require "sqlite3"
+require "myhtml"
 require "./crystal-docset-generator/*"
 
 Cdg.configure do |settings|

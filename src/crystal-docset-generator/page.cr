@@ -1,4 +1,7 @@
 class Cdg::Page
+  @doc : Myhtml::Parser?
+  @html : String?
+
   JSON.mapping(
     path: String,
     kind: String,
@@ -10,6 +13,7 @@ class Cdg::Page
   def process
     add_to_database
     process_methods
+    save_html
     puts "Processed #{path}"
     process_subtypes
   end
@@ -43,5 +47,20 @@ class Cdg::Page
 
   def process_subtypes
     types.each(&.process)
+  end
+
+  def save_html
+    html_path = "#{Cdg.settings.docs_path}/#{path}"
+    Utils.create_nested_dir(html_path)
+    File.write(html_path, html_doc.to_html)
+  end
+
+  def html_doc
+    @doc ||= Myhtml::Parser.new(html)
+  end
+
+  def html
+    url = "#{Cdg.settings.online_path}/0.26.1/#{path}"
+    @html ||= HTTP::Client.get(url).body
   end
 end
