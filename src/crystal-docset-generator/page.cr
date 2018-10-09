@@ -8,6 +8,7 @@ class Cdg::Page
     name: String,
     types: Array(Page),
     class_methods: Array(Method),
+    instance_methods: Array(Method),
   )
 
   def process
@@ -39,7 +40,8 @@ class Cdg::Page
   end
 
   def process_methods
-    class_methods.each do |method|
+    methods = class_methods + instance_methods
+    methods.each do |method|
       method.nillable_page = self
       method.process
     end
