@@ -16,17 +16,15 @@ class Cdg::Generator
   end
 
   def generate_db
-    DB.open(Cdg.settings.db_url) do |db|
-      db.exec <<-SQL
-        CREATE TABLE searchIndex(
-          id INTEGER PRIMARY KEY,
-          name TEXT,
-          type TEXT,
-          path TEXT
-        );
-        CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);
-      SQL
-    end
+    Cdg.settings.db.exec <<-SQL
+      CREATE TABLE searchIndex(
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        type TEXT,
+        path TEXT
+      );
+      CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);
+    SQL
   end
 
   def json_index
