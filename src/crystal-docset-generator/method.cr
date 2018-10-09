@@ -33,7 +33,7 @@ class Cdg::Method
     if method_anchor = find_method_node_with_weird_id(id)
       doc = page.html_doc
       dash_anchor = doc.tree.create_node(:a)
-      name = "//apple_ref/cpp/Method/#{escaped_name}"
+      name = "//apple_ref/cpp/#{type}/#{escaped_name}"
       dash_anchor.attribute_add("name", name)
       dash_anchor.attribute_add("class", "dashAnchor")
 

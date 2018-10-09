@@ -3,7 +3,12 @@ require "json"
 require "habitat"
 require "sqlite3"
 require "myhtml"
-require "./crystal-docset-generator/*"
+require "./crystal-docset-generator/config"
+require "./crystal-docset-generator/utils"
+require "./crystal-docset-generator/generator"
+require "./crystal-docset-generator/page"
+require "./crystal-docset-generator/method"
+require "./crystal-docset-generator/macro"
 
 Cdg.configure do |settings|
   settings.version = "0.26.1"
