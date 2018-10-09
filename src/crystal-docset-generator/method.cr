@@ -30,13 +30,15 @@ class Cdg::Method
   end
 
   def insert_toc_anchor
-    doc = page.html_doc
-    method_anchor = find_method_node_with_weird_id(id)
-    dash_anchor = doc.tree.create_node(:a)
-    dash_anchor.attribute_add("name", "//apple_ref/cpp/Method/#{escaped_name}")
-    dash_anchor.attribute_add("class", "dashAnchor")
+    if method_anchor = find_method_node_with_weird_id(id)
+      doc = page.html_doc
+      dash_anchor = doc.tree.create_node(:a)
+      name = "//apple_ref/cpp/Method/#{escaped_name}"
+      dash_anchor.attribute_add("name", name)
+      dash_anchor.attribute_add("class", "dashAnchor")
 
-    method_anchor.insert_before(dash_anchor)
+      method_anchor.insert_before(dash_anchor)
+    end
   end
 
   def page : Page
@@ -55,7 +57,7 @@ class Cdg::Method
   end
 
   private def find_method_node_with_weird_id(id)
-    all_methods = doc.css(".entry-detail")
+    all_methods = page.html_doc.css(".entry-detail")
     all_methods.find { |node| node.attribute_by("id") == id }
   end
 

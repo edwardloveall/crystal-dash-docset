@@ -1,5 +1,6 @@
 module Cdg
   Habitat.create do
+    setting version : String
     setting online_path : String
     setting docset_path : String
     setting resource_path : String

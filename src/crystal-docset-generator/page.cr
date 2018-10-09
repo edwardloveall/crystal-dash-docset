@@ -60,7 +60,7 @@ class Cdg::Page
   end
 
   def html
-    url = "#{Cdg.settings.online_path}/0.26.1/#{path}"
+    url = "#{Cdg.settings.online_path}/#{path}"
     @html ||= HTTP::Client.get(url).body
   end
 end
