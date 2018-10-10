@@ -14,6 +14,7 @@ class Cdg::Page
 
   def process
     add_to_database
+    remove_sidebar
     process_methods
     save_html
     puts "Processed #{path}"
@@ -46,6 +47,10 @@ class Cdg::Page
       method.nillable_page = self
       method.process
     end
+  end
+
+  def remove_sidebar
+    html_doc.css("div.sidebar").first.remove!
   end
 
   def process_subtypes
