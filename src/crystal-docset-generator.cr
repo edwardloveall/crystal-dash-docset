@@ -1,3 +1,4 @@
+require "file_utils"
 require "http"
 require "json"
 require "habitat"
