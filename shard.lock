@@ -10,7 +10,7 @@ shards:
 
   myhtml:
     github: kostya/myhtml
-    commit: de5dec2b598152b44efd4e3756a725850ae98439
+    version: 1.2.0
 
   sqlite3:
     github: crystal-lang/crystal-sqlite3
