@@ -46,6 +46,11 @@ class Cdg::Generator
     )
   end
 
+  def copy_plist
+    FileUtils.cp("src/support/icon.png", "#{Cdg.settings.docset_path}")
+    FileUtils.cp("src/support/icon@2x.png", "#{Cdg.settings.docset_path}")
+  end
+
   def copy_stylesheet
     css_path = "css/style.css"
     css_destination = "#{Cdg.settings.docs_path}/#{css_path}"
